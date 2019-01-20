@@ -3,7 +3,6 @@ package com.example.sherdonbrown.thecatapi.Network;
 
 
 import com.example.sherdonbrown.thecatapi.ModelData.Objects;
-import com.example.sherdonbrown.thecatapi.ModelData.Objects_Conteg;
 
 import java.util.List;
 
@@ -52,11 +51,12 @@ public class Connection_Service implements Cat_Interface {
     //   "");
     //}
     @Override
-    public Observable<Objects> getListParams() {
-        return getConnection().getListParams("",
-                "", "");
+    public Observable<List<Objects>> getListParams(String id) {
+        return getConnection().getListParams(id);
 
 //        return getConnection().getCatList();
+       // return getConnection().getListParams();
+
 
 
     }

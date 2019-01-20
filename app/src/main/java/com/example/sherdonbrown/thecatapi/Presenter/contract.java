@@ -10,7 +10,7 @@ public class contract {
     public interface View_Cat {
 
         void displayProgressDialog();
-        void List(Objects Model);
+        void List(List<Objects> Model);
         //void List(List<Objects> Model);
         void dismissProgressDialog();
 

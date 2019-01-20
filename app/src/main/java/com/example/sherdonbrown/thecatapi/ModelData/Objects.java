@@ -7,25 +7,49 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Objects {
-    @SerializedName("data")
+
+   @SerializedName("breeds")
+   @Expose
+   private List<Object> breeds = null;
+    @SerializedName("categories")
     @Expose
-    private List<Items> data = null;
+    private List<Objects_Conteg> categories = null;
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("url")
+    @Expose
+    private String url;
 
-    private List<Objects_Conteg> data_Cate = null;
-
-    public List<Items> getData() {
-        return data;
+    public List<Object> getBreeds() {
+        return breeds;
     }
 
-    public List<Objects_Conteg> getData_Cate() {
-        return data_Cate;
+    public void setBreeds(List<Object> breeds) {
+        this.breeds = breeds;
     }
 
-    public void setData(List<Items> data) {
-        this.data = data;
-    }
-    public void setData_Cate(List<Objects_Conteg> data_Cate) {
-        this.data_Cate = data_Cate;
+    public List<Objects_Conteg> getCategories() {
+        return categories;
     }
 
+    public void setCategories(List<Objects_Conteg> categories) {
+        this.categories = categories;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

@@ -1,5 +1,8 @@
 package com.example.sherdonbrown.thecatapi.Presenter;
 
+import android.util.Log;
+import android.widget.Spinner;
+
 import com.example.sherdonbrown.thecatapi.ModelData.Objects_Conteg;
 import com.example.sherdonbrown.thecatapi.Network.Cat_Interface;
 
@@ -20,8 +23,9 @@ import rx.schedulers.Schedulers;
 public class presenter implements contract.Presenter_Cat{
 
     private contract.View_Cat iView_List;
-    private Cat_Interface iCat_interacter;
+    public Cat_Interface iCat_interacter;
     private Category_Interface iCategory_interacter;
+    public static String category_value;
 
     public presenter(){}
     public presenter(Cat_Interface iCat_interacter){
@@ -40,9 +44,9 @@ public class presenter implements contract.Presenter_Cat{
 
     @Override
     public void getCatFromAPI() {
-        iCat_interacter.getListParams().subscribeOn(Schedulers.io())
+        iCat_interacter.getListParams(category_value).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Objects>() {
+                .subscribe(new Observer<List<Objects>>() {
                     @Override
                     public void onCompleted() {
                         iView_List.displayProgressDialog();
@@ -51,14 +55,11 @@ public class presenter implements contract.Presenter_Cat{
                     @Override
                     public void onError(Throwable e) {
                         iView_List.dismissProgressDialog();
+                        Log.d("Test", "ON ERROR");
                     }
 
-                   // @Override
-                 //   public void onNext(Objects obj) {
-                  //      iView_List.List(obj);
-                //    }
                    @Override
-                   public void onNext(Objects obj) {
+                   public void onNext(List<Objects> obj) {
 
                         iView_List.List(obj);
                    }
@@ -68,7 +69,11 @@ public class presenter implements contract.Presenter_Cat{
                 });
 
     }
+public static void getValueFromSpinner(String id){
+        Log.d(id, " ID FOR CHANGING THE IMAGE LOG");
+        category_value = id;
 
+}
 
     @Override
     public void getCategoryFromAPI() {
@@ -108,4 +113,5 @@ public class presenter implements contract.Presenter_Cat{
         iCategory_interacter = new Connection_Service_category();
 
     }
+
 }
