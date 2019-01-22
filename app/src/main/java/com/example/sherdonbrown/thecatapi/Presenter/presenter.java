@@ -27,7 +27,7 @@ public class presenter implements contract.Presenter_Cat{
     private Category_Interface iCategory_interacter;
     public static String category_value;
     public static String category_limit;
-    public static String category_page;
+    public static int category_page;
 
     public presenter(){}
     public presenter(Cat_Interface iCat_interacter){
@@ -46,7 +46,7 @@ public class presenter implements contract.Presenter_Cat{
 
     @Override
     public void getCatFromAPI() {
-        iCat_interacter.getListParams(category_value, category_limit).subscribeOn(Schedulers.io())
+        iCat_interacter.getListParams(category_value, category_limit, category_page).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<Objects>>() {
                     @Override

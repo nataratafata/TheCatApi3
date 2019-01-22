@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private CatAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private Spinner spinner, limit;
+   // public final Button nextButton;
     ArrayAdapter<String> adpt;
     ArrayAdapter<String> adptLimit;
    //->>>>> String spinnerArray[] arr;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     //get limit
     ArrayList<String> limitArray = new ArrayList<String>();
     HashMap<String,String> map = new HashMap<>();
+    //Value
+    public int val = 0;
 
 
     @Override
@@ -121,6 +125,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         spinner.setOnItemSelectedListener(this);
         limit.setOnItemSelectedListener(this);
+       // final Button prevButton = findViewById(R.id.prev);
+        //button.setOnClickListener(new View.OnClickListener() {
+        //    public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+        //    }
+        //});
+        //final Button nextButton = findViewById(R.id.next);
     }
 
     public void initializePresenterandCallAPI(){
@@ -189,7 +200,33 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 presenter.category_limit = limitArray.get(position);
                 ListPresenter.getCatFromAPI();
                 break;
+            case R.id.prev:
+                presenter.category_page = val--;
+                ListPresenter.getCatFromAPI();
+                break;
+            case R.id.next:
+                presenter.category_page = val++;
+                ListPresenter.getCatFromAPI();
+                break;
         }
+
+        final Button prevButton = findViewById(R.id.prev);
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+        // Code here executes on main thread after user presses button
+                presenter.category_page = val--;
+                ListPresenter.getCatFromAPI();
+            }
+        });
+
+        final Button nextButton = findViewById(R.id.next);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                presenter.category_page = val++;
+                ListPresenter.getCatFromAPI();
+            }
+        });
 
 
         //presenter.getValueFromSpinner(ID.toString());

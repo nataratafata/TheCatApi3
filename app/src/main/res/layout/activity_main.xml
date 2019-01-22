@@ -17,14 +17,14 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="194dp"
+        android:layout_width="82dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="190dp"
-        android:layout_marginLeft="190dp"
+        android:layout_marginStart="302dp"
+        android:layout_marginLeft="302dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
@@ -48,18 +48,36 @@
 
     <Spinner
         android:id="@+id/limit"
-        android:layout_width="190dp"
+        android:layout_width="83dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
+        android:layout_marginStart="219dp"
+        android:layout_marginLeft="219dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="194dp"
-        android:layout_marginRight="194dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginRight="82dp"
         android:hint="Limit" />
+
+    <Button
+        android:id="@+id/prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Previous" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="102dp"
+        android:layout_marginLeft="102dp"
+        android:text="Next" />
 
 
 </RelativeLayout>
