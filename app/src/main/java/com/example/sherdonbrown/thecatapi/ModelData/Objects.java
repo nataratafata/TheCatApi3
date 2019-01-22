@@ -17,6 +17,14 @@ public class Objects {
     @SerializedName("id")
     @Expose
     private String id;
+    //limit
+    @SerializedName("limit")
+    @Expose
+    private String limit;
+    //page
+    @SerializedName("page")
+    @Expose
+    private String page;
     @SerializedName("url")
     @Expose
     private String url;
@@ -44,6 +52,25 @@ public class Objects {
     public void setId(String id) {
         this.id = id;
     }
+
+//limit
+    public String getLimit() {
+        return limit;
+    }
+
+    public void setLimit(String limit) {
+        this.limit = limit;
+    }
+
+    //page
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
 
     public String getUrl() {
         return url;

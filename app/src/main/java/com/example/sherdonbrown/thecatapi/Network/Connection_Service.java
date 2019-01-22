@@ -51,8 +51,8 @@ public class Connection_Service implements Cat_Interface {
     //   "");
     //}
     @Override
-    public Observable<List<Objects>> getListParams(String id) {
-        return getConnection().getListParams(id);
+    public Observable<List<Objects>> getListParams(String id, String limit) {
+        return getConnection().getListParams(id, limit);
 
 //        return getConnection().getCatList();
        // return getConnection().getListParams();

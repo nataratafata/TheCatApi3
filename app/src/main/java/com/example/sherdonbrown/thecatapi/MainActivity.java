@@ -33,14 +33,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Cat_Interface Interacter;
     private CatAdapter mAdapter;
     private RecyclerView mRecyclerView;
-    private Spinner spinner;
+    private Spinner spinner, limit;
     ArrayAdapter<String> adpt;
+    ArrayAdapter<String> adptLimit;
    //->>>>> String spinnerArray[] arr;
     public SwipeRefreshLayout mySwipeRefresh;
     public List<Objects> catList;
     //spinner
     ArrayList<String> spinnerArray = new ArrayList<String>();
     ArrayList<String> ID = new ArrayList<String>();
+    //get limit
+    ArrayList<String> limitArray = new ArrayList<String>();
     HashMap<String,String> map = new HashMap<>();
 
 
@@ -90,6 +93,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 .simple_spinner_dropdown_item);
         spinner.setAdapter(adpt);
 
+        //Limit of api to display
+        limit = findViewById(R.id.limit);
+        limitArray = new ArrayList<>();
+
+        adptLimit = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item,
+                        limitArray); //selected item will look like a spinner set from XML
+        adptLimit.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
+        limit.setAdapter(adptLimit);
+
+
+
+
 
         //hash map for the key and value
         map = new HashMap<>();
@@ -100,8 +117,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Log.e("FindMe", "The ID size is: " + ID.size());
         Log.e("FindMe", "The Map size is: " + map.size());
         Log.e("FindMe", "The Spinner size is: " + spinnerArray.size());
+        Log.e("FindMe", "The Spinner size is: " + limitArray.size());
 
         spinner.setOnItemSelectedListener(this);
+        limit.setOnItemSelectedListener(this);
     }
 
     public void initializePresenterandCallAPI(){
@@ -136,7 +155,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
            // ID.add(category.getId().toString());
 
         }
+        limitArray.add("1");
+        limitArray.add("3");
+        limitArray.add("5");
+        limitArray.add("10");
+        limitArray.add("15");
+        limitArray.add("25");
+        limitArray.add("50");
         adpt.notifyDataSetChanged();
+        adptLimit.notifyDataSetChanged();
+
 
 
     }
@@ -149,16 +177,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Log.e("Pow", spinnerArray.get(position));
         Log.e("Poo", ID.get(position));
+        Log.e("limit value", limitArray.get(position));
 
-        presenter.category_value = ID.get(position);
-        ListPresenter.getCatFromAPI();
 
+        switch(parent.getId()){
+            case R.id.spinner:
+                presenter.category_value = ID.get(position);
+                ListPresenter.getCatFromAPI();
+                break;
+            case R.id.limit:
+                presenter.category_limit = limitArray.get(position);
+                ListPresenter.getCatFromAPI();
+                break;
+        }
 
 
         //presenter.getValueFromSpinner(ID.toString());
         // presenter.getValueFromSpinner(map.get(ID.get(position)));
         //presenter.getValueFromSpinner(map.get(ID.get(position)));
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

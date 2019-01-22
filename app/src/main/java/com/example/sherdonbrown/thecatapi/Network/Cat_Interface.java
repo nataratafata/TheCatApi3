@@ -16,5 +16,5 @@ public interface Cat_Interface {
    // Observable<Objects> getCatList();
    // Observable<List<Objects>> getCatList();
    // Observable<List<Objects>> getListParams();
-   Observable<List<Objects>> getListParams(String id);
+   Observable<List<Objects>> getListParams(String id, String limit);
 }

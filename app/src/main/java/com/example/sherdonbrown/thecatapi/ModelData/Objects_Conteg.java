@@ -14,6 +14,7 @@ public class Objects_Conteg {
     @Expose
     private String name;
 
+
     public Integer getId() {
         return id;
     }

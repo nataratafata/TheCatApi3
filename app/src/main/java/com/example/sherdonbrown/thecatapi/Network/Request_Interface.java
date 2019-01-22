@@ -28,6 +28,7 @@ public interface Request_Interface {
     //                                  @Query("limit") String limit,
      //                                 @Query("page") String page);
 
-    Observable<List<Objects>> getListParams(@Query("category_ids") String id);
+    Observable<List<Objects>> getListParams(@Query("category_ids") String id,
+                                            @Query("limit") String limit);
 }//
 
