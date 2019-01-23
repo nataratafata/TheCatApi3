@@ -1,17 +1,19 @@
 package com.example.sherdonbrown.thecatapi;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.sherdonbrown.thecatapi.DataAdapter.CatAdapter;
 import com.example.sherdonbrown.thecatapi.ModelData.Objects_Conteg;
@@ -27,7 +29,7 @@ import java.util.List;
 
 //import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, contract.View_Cat/*SwipeRefreshLayout.OnRefreshListener */{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, contract.View_Cat, BottomNavigationView.OnNavigationItemSelectedListener/*SwipeRefreshLayout.OnRefreshListener */{
 
     private static final String TAG_1 = MainActivity.class.getSimpleName();
     private presenter ListPresenter;
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     HashMap<String,String> map = new HashMap<>();
     //Value
     public int val = 0;
+    BottomNavigationView buttonNavigationView;
+    public Button prevButton, nextButton;
 
 
     @Override
@@ -182,15 +186,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // presenter.getValueFromSpinner(parent.getItemAtPosition(position).toString());
-        // presenter.getValueFromSpinner(parent.getItemAtPosition(position).toString());
-        //HashMap cate_id = <int, String>
 
         Log.e("Pow", spinnerArray.get(position));
         Log.e("Poo", ID.get(position));
         Log.e("limit value", limitArray.get(position));
 
-
+        buttonNavigationView = findViewById(R.id.bottom_navigation_view);
+        buttonNavigationView.setSelectedItemId(R.id.navigation_account_back);
+        buttonNavigationView.setSelectedItemId(R.id.navigation_account_forward);
+        buttonNavigationView.setOnNavigationItemSelectedListener(this);
         switch(parent.getId()){
             case R.id.spinner:
                 presenter.category_value = ID.get(position);
@@ -200,38 +204,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 presenter.category_limit = limitArray.get(position);
                 ListPresenter.getCatFromAPI();
                 break;
-            case R.id.prev:
+
+        }
+
+
+
+    }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem items)
+    {
+        switch(items.getItemId()){
+            case R.id.navigation_account_back:
                 presenter.category_page = val--;
                 ListPresenter.getCatFromAPI();
                 break;
-            case R.id.next:
+            case R.id.navigation_account_forward:
                 presenter.category_page = val++;
                 ListPresenter.getCatFromAPI();
                 break;
         }
-
-        final Button prevButton = findViewById(R.id.prev);
-        prevButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-        // Code here executes on main thread after user presses button
-                presenter.category_page = val--;
-                ListPresenter.getCatFromAPI();
-            }
-        });
-
-        final Button nextButton = findViewById(R.id.next);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                presenter.category_page = val++;
-                ListPresenter.getCatFromAPI();
-            }
-        });
-
-
-        //presenter.getValueFromSpinner(ID.toString());
-        // presenter.getValueFromSpinner(map.get(ID.get(position)));
-        //presenter.getValueFromSpinner(map.get(ID.get(position)));
+        return false;
     }
 
 
