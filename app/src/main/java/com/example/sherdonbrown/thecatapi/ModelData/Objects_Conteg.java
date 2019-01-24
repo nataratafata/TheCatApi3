@@ -3,7 +3,6 @@ package com.example.sherdonbrown.thecatapi.ModelData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 
 public class Objects_Conteg {
 

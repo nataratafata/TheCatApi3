@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">CatAPI</string>
     <string name="TheCatKey">21a418cd-06af-4d27-9d0e-57b9db39d97e</string>
-    <string name="search_movie">Search Cats</string>
-
+    <string name="search_movie">navigate</string>
+    <string name="nav_next">next</string>
+    <string name="nav_prev">previous</string>
+    <string name="favorite">favorite</string>
 </resources>

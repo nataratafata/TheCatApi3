@@ -1,21 +1,17 @@
 package com.example.sherdonbrown.thecatapi.Presenter;
 
 import android.util.Log;
-import android.widget.Spinner;
 
 import com.example.sherdonbrown.thecatapi.ModelData.Objects_Conteg;
 import com.example.sherdonbrown.thecatapi.Network.Cat_Interface;
 
-//import java.util.Objects;
 import com.example.sherdonbrown.thecatapi.ModelData.Objects;
 import com.example.sherdonbrown.thecatapi.Network.Category_Interface;
 import com.example.sherdonbrown.thecatapi.Network.Connection_Service;
 import com.example.sherdonbrown.thecatapi.Network.Connection_Service_category;
 
 import java.util.List;
-import java.util.Locale;
 
-import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

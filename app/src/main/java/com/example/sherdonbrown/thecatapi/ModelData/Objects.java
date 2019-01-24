@@ -1,6 +1,7 @@
 package com.example.sherdonbrown.thecatapi.ModelData;
 
 
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -79,4 +80,8 @@ public class Objects {
     public void setUrl(String url) {
         this.url = url;
     }
+
+
+
+
 }

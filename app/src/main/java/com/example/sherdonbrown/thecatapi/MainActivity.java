@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.sherdonbrown.thecatapi.DataAdapter.CatAdapter;
@@ -25,22 +24,19 @@ import com.example.sherdonbrown.thecatapi.ModelData.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-//import java.util.Objects;
 
-//import java.util.Objects;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, contract.View_Cat, BottomNavigationView.OnNavigationItemSelectedListener/*SwipeRefreshLayout.OnRefreshListener */{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, contract.View_Cat, BottomNavigationView.OnNavigationItemSelectedListener{
 
     private static final String TAG_1 = MainActivity.class.getSimpleName();
     private presenter ListPresenter;
     private Cat_Interface Interacter;
     private CatAdapter mAdapter;
     private RecyclerView mRecyclerView;
-    private Spinner spinner, limit;
-   // public final Button nextButton;
     ArrayAdapter<String> adpt;
     ArrayAdapter<String> adptLimit;
-   //->>>>> String spinnerArray[] arr;
     public SwipeRefreshLayout mySwipeRefresh;
     public List<Objects> catList;
     //spinner
@@ -52,7 +48,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     //Value
     public int val = 0;
     BottomNavigationView buttonNavigationView;
-    public Button prevButton, nextButton;
+//favorite
+   Objects localDB;
+    @BindView(R.id.spinner)
+    Spinner spinner;
+    @BindView(R.id.limit)
+    Spinner limit;
 
 
     @Override
@@ -88,10 +89,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        ButterKnife.bind(this);
+        //Local DB
+        localDB = new Objects();
         initializePresenterandCallAPI();
-        spinner = findViewById(R.id.spinner);
+        //Category of api to display
         spinnerArray = new ArrayList<>();
         ID = new ArrayList<>();
         adpt = new ArrayAdapter<String>
@@ -102,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adpt);
 
         //Limit of api to display
-        limit = findViewById(R.id.limit);
         limitArray = new ArrayList<>();
 
         adptLimit = new ArrayAdapter<String>
@@ -129,24 +130,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         spinner.setOnItemSelectedListener(this);
         limit.setOnItemSelectedListener(this);
-       // final Button prevButton = findViewById(R.id.prev);
-        //button.setOnClickListener(new View.OnClickListener() {
-        //    public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-        //    }
-        //});
-        //final Button nextButton = findViewById(R.id.next);
+
     }
 
     public void initializePresenterandCallAPI(){
-       // Interacter = new Connection_Service();
         ListPresenter = new presenter();
         Log.d(TAG_1, "SETUP PRESENTER");
         ListPresenter.onBind(this);
         ListPresenter.initializeRetrofit();
         ListPresenter.getCatFromAPI();
         ListPresenter.getCategoryFromAPI();
-//        mySwipeRefresh.setRefreshing(false);
+
     }
 
     @Override
@@ -162,12 +156,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
              list) {
             //iterate
 
-            //spinnerArray.add(category.getId().toString());
             ID.add(category.getId().toString());
             spinnerArray.add(category.getName());
-           // ID.indexOf(1);
 
-           // ID.add(category.getId().toString());
 
         }
         limitArray.add("1");
@@ -180,8 +171,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adpt.notifyDataSetChanged();
         adptLimit.notifyDataSetChanged();
 
-
-
     }
 
     @Override
@@ -191,10 +180,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Log.e("Poo", ID.get(position));
         Log.e("limit value", limitArray.get(position));
 
-        buttonNavigationView = findViewById(R.id.bottom_navigation_view);
-        buttonNavigationView.setSelectedItemId(R.id.navigation_account_back);
-        buttonNavigationView.setSelectedItemId(R.id.navigation_account_forward);
-        buttonNavigationView.setOnNavigationItemSelectedListener(this);
+
+
+
         switch(parent.getId()){
             case R.id.spinner:
                 presenter.category_value = ID.get(position);
@@ -204,12 +192,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 presenter.category_limit = limitArray.get(position);
                 ListPresenter.getCatFromAPI();
                 break;
-
+            case R.id.navigation_account_back:
+                buttonNavigationView.setOnNavigationItemSelectedListener(this);
+                break;
+            case R.id.navigation_account_forward:
+                buttonNavigationView.setOnNavigationItemSelectedListener(this);
+                break;
         }
 
-
-
+        buttonNavigationView = findViewById(R.id.bottom_navigation_view);
+        buttonNavigationView.setSelectedItemId(R.id.navigation_account_back);
+        buttonNavigationView.setSelectedItemId(R.id.navigation_account_forward);
+        buttonNavigationView.setOnNavigationItemSelectedListener(this);
     }
+
+
+
 
     public boolean onNavigationItemSelected(@NonNull MenuItem items)
     {
@@ -225,6 +223,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         return false;
     }
+
+
+
 
 
     @Override

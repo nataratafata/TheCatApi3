@@ -37,27 +37,10 @@ public class Connection_Service implements Cat_Interface {
         return retrofit.create(Request_Interface.class);
     }
 
-    //  @Override
-    //public Observable<List<Objects>> getCatList() {
-    //   return getConnection().getListParams("",
-    //             "",
-    //            "");
-//        return getConnection().getCatList();
-    // }
-    //@Override
-    //public Observable<Objects> getListParams() {
-    // return getConnection().getListParams("",
-    //      "",
-    //   "");
-    //}
+
     @Override
     public Observable<List<Objects>> getListParams(String id, String limit, int page) {
         return getConnection().getListParams(id, limit, page);
-
-//        return getConnection().getCatList();
-       // return getConnection().getListParams();
-
-
 
     }
 }

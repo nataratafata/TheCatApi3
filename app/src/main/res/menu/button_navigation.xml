@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_account_back"
+        android:icon="@drawable/ic_arrow_back_black_24dp"
+        android:title="@string/nav_prev"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/navigation_account_forward"
+        android:icon="@drawable/ic_arrow_forward_black_24dp"
+        android:title="@string/nav_next"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/navigation_account_favorite"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="@string/favorite"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+</menu>

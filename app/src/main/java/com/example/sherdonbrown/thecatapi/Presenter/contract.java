@@ -3,7 +3,6 @@ import com.example.sherdonbrown.thecatapi.ModelData.Objects;
 import com.example.sherdonbrown.thecatapi.ModelData.Objects_Conteg;
 
 import java.util.List;
-//import java.util.Objects;
 
 public class contract {
 
@@ -11,7 +10,6 @@ public class contract {
 
         void displayProgressDialog();
         void List(List<Objects> Model);
-        //void List(List<Objects> Model);
         void dismissProgressDialog();
 
 
