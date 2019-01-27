@@ -8,27 +8,14 @@
     tools:layout_editor_absoluteY="25dp">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="650dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
-
-
-    </android.support.v7.widget.RecyclerView>
-
+    </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
@@ -43,44 +30,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/button_navigation" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="158dp"
-        android:layout_height="26dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:hint="Category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Spinner
-        android:id="@+id/limit"
-        android:layout_width="184dp"
-        android:layout_height="24dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:hint="Limit"
-        app:layout_constraintEnd_toStartOf="@+id/spinner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
 
 
 </android.support.constraint.ConstraintLayout>

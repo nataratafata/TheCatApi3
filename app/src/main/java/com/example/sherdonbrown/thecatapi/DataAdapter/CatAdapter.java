@@ -16,11 +16,13 @@ import com.example.sherdonbrown.thecatapi.R;
 import com.squareup.picasso.Picasso;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder>{
 
     private List<Objects> mCatModel;
+    public static ArrayList<Objects> catFavorite = new ArrayList<>();
 
 
     //favorite
@@ -44,7 +46,8 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder>{
         holder.CatPoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("Please work", holder.getAdapterPosition() + "");
+                Log.e("Please work",  mCatModel.get(holder.getAdapterPosition()).getId());
+                catFavorite.add(mCatModel.get(holder.getAdapterPosition()));
             }
         });
 
